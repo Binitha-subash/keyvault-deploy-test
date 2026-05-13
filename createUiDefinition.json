@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+  "handler": "Microsoft.Azure.CreateUIDef",
+  "version": "0.1.2-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "keyVaultName",
+        "type": "Microsoft.Common.TextBox",
+        "label": "Key Vault Name",
+        "toolTip": "Enter a globally unique Key Vault name.",
+        "constraints": {
+          "required": true,
+          "regex": "^[a-zA-Z0-9-]{3,24}$",
+          "validationMessage": "Name must be 3–24 characters. Use letters, numbers, and hyphens only."
+        },
+        "visible": true
+      },
+      {
+        "name": "keyVaultSku",
+        "type": "Microsoft.Common.DropDown",
+        "label": "Key Vault SKU",
+        "defaultValue": "standard",
+        "constraints": {
+          "allowedValues": [
+            {
+              "label": "Standard",
+              "value": "standard"
+            },
+            {
+              "label": "Premium",
+              "value": "premium"
+            }
+          ],
+          "required": true
+        },
+        "visible": true
+      }
+    ],
+    "steps": [
+      {
+        "name": "securitySettings",
+        "label": "Security Settings",
+        "elements": [
+          {
+            "name": "enableSoftDelete",
+            "type": "Microsoft.Common.CheckBox",
+            "label": "Enable Soft Delete",
+            "defaultValue": true,
+            "toolTip": "Protects deleted keys, secrets, and certificates.",
+            "visible": true
+          },
+          {
+            "name": "enablePurgeProtection",
+            "type": "Microsoft.Common.CheckBox",
+            "label": "Enable Purge Protection",
+            "defaultValue": false,
+            "toolTip": "Prevents permanent deletion until retention period ends.",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "outputs": {
+      "keyVaultName": "[basics('keyVaultName')]",
+      "keyVaultSku": "[basics('keyVaultSku')]",
+      "enableSoftDelete": "[steps('securitySettings').enableSoftDelete]",
+      "enablePurgeProtection": "[steps('securitySettings').enablePurgeProtection]"
+    }
+  }
+}
