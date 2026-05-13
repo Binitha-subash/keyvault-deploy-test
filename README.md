@@ -7,6 +7,5 @@ and ARM deployment before publishing to Azure Marketplace.
 ## Deploy to Azure
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](
-https://portal.azure.com/#create/Microsoft.Template/uri/
-https://raw.githubusercontent.com/Binitha/keyvault-deploy-test/main/mainTemplate.json
+https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/Binitha-subash/keyvault-deploy-test/main/mainTemplate.json
 )
